@@ -1,0 +1,95 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### ePoweredMove Sensitive Files ###
+src/main/resources/application-dev.properties
+src/main/resources/firebase_service.json
+
+### ePoweredMove Android ###
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/google-services.json
+
+### ePoweredMove Angular ###
+# System files
+.DS_Store
+Thumbs.db
+/src/environments/*
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+### ePoweredMove Other ###
+*.bak
