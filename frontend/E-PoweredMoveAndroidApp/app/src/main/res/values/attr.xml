@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="search_view_colors" format="color"/>
+    <attr name="fragment_background" format="color"/>
+    <attr name="dialog_color" format="color"/>
+</resources>

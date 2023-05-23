@@ -1,0 +1,31 @@
+agm-map {
+  height: 100%;
+  width: 100%;
+}
+
+.main-container {
+  width: 100%;
+  height: calc(100% - 45px);;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+}
+
+.sidenav {
+  padding: 15px;
+  width: 35%;
+}
+
+.paragraphMargin{
+  margin-bottom: 10px;
+}
+
+.chargingStationImage {
+  max-width: 300px;
+}
+.plugButtonMargin {
+  margin-top: 15px;
+}

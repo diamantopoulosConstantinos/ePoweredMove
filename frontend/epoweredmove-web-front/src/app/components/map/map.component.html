@@ -1,0 +1,43 @@
+<mat-drawer-container class="main-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <button style="float: right;" mat-icon-button (click)="drawer.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <p class="paragraphMargin" style="font-size: larger"><strong>Point of Interest</strong></p>
+    <div *ngIf="selectedPoi && selectedPoi.chargingStationObj">
+      <img class="chargingStationImage" mat-card-lg-image src="{{selectedPoi.chargingStationObj.imageUrl ? selectedPoi.chargingStationObj.imageUrl : '/assets/images/charging-station-default.jpeg'}}" >
+      <p class="paragraphMargin"><b>Has Parking:</b> {{booleanVariablePipe.transform(selectedPoi.parking)}}</p>
+      <p class="paragraphMargin"><b>Has Illumination:</b> {{booleanVariablePipe.transform(selectedPoi.illumination)}}</p>
+      <p class="paragraphMargin"><b>Has WC:</b> {{booleanVariablePipe.transform(selectedPoi.wc)}}</p>
+      <p class="paragraphMargin"><b>Has Shop:</b> {{booleanVariablePipe.transform(selectedPoi.shopping)}}</p>
+      <p class="paragraphMargin"><b>Serves Food:</b> {{booleanVariablePipe.transform(selectedPoi.food)}}</p>
+      <p class="paragraphMargin"><b>Phone Number:</b> {{selectedPoi.phone}}</p>
+      <p class="paragraphMargin"><b>KWh Price:</b> {{kwhPricePipe.transform(selectedPoi.chargingStationObj.pricePerKwh)}}</p>
+      <p class="paragraphMargin"><b>Auto Accept:</b> {{booleanVariablePipe.transform(selectedPoi.chargingStationObj.autoAccept)}}</p>
+      <p class="paragraphMargin"><b>API Enabled:</b> {{booleanVariablePipe.transform(selectedPoi.chargingStationObj.apiEnabled)}}</p>
+      <p class="paragraphMargin"><b>Barcode Enabled:</b> {{booleanVariablePipe.transform(selectedPoi.chargingStationObj.barcodeEnabled)}}</p>
+      <div *ngIf="selectedPoi.paymentMethodsObj">
+        <p class="paragraphMargin"><b>Payment Methods:</b> </p>
+        <span *ngFor="let paymentMethod of selectedPoi.paymentMethodsObj; let i = index">
+          {{paymentTypePipe.transform(paymentMethod.description)}}
+          <span *ngIf="i < selectedPoi.paymentMethodsObj.length - 1">,</span>
+        </span>
+      </div>
+      <div class="plugButtonMargin">
+        <button mat-menu-item (click)="showPlugsDialog(selectedPoi)">
+          <b>Show Plugs</b>
+          <mat-icon>group_work</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <agm-map [latitude]="locationPipe.transform(latitude)" [longitude]="locationPipe.transform(longitude)" [zoom]="zoom" [disableDefaultUI]="false">
+      <agm-marker *ngFor="let marker of markers" (markerClick)="markerSelected(marker); drawer.open();" [iconUrl]="marker.icon" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false"></agm-marker>
+    </agm-map>
+  </div>
+
+</mat-drawer-container>

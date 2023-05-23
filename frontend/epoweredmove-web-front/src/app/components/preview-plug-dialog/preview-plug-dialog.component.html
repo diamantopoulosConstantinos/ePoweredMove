@@ -1,0 +1,20 @@
+<mat-card class="dialog-card">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Plug Information</mat-card-title>
+      <img class="chargingStationImage" mat-card-lg-image src="{{plug.plugTypeObj && plug.plugTypeObj.imageUrl ? plug.plugTypeObj.imageUrl : '/assets/images/plug-default.jpeg'}}" >
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Num. of Phases:</strong> {{plug.phases}}</p>
+    <p><strong>Current Availability:</strong> {{availabilityPipe.transform(plug.availability)}}</p>
+    <p><strong>Plug Power (KW):</strong> {{plug.power}}</p>
+    <p><strong>Created At:</strong> {{datePipe.transform(plug.timestamp)}}</p>
+    <p><strong>Connector:</strong> {{plug.plugTypeObj.connector}}</p>
+    <p><strong>Compatibility:</strong> {{plug.plugTypeObj.compatibility}}</p>
+    <p><strong>Type Level:</strong> {{plug.plugTypeObj.typeLevel}}</p>
+    <p><strong>Tesla Compatible:</strong> {{teslaCompatiblePipe.transform(plug.plugTypeObj.tesla.toString())}}</p>
+    <p><strong>Current Type:</strong> {{currentTypePipe.transform(plug.plugTypeObj.current.toString())}}</p>
+    <p><strong>Description:</strong> {{plug.plugTypeObj.description}}</p>
+  </mat-card-content>
+</mat-card>

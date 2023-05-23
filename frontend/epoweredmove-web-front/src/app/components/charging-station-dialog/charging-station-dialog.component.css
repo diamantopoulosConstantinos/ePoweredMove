@@ -1,0 +1,17 @@
+.dialog-card {
+  width: 100%;
+}
+
+.add-button {
+  text-align: right;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.plugTypeImage{
+  max-height: 100px;
+}
+
+.chargingStationImage {
+  max-height: 300px;
+}

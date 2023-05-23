@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-m-12">
+    <div class="page-title">Sign In</div>
+  </div>
+  <div class="col-l-12" align="center">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="signinform" (ngSubmit)="logInLocal()">
+          <p>
+            <mat-form-field [floatLabel]="'auto'" [hideRequiredMarker]="true">
+              <mat-label>Email</mat-label>
+              <input type="text" matInput formControlName="email">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field [floatLabel]="'auto'" [hideRequiredMarker]="true">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password">
+            </mat-form-field>
+          </p>
+          <div *ngIf="errors && errors.length > 0">
+            <div *ngFor="let error of errors">
+              <p class="error">
+                {{error}}
+              </p>
+            </div>
+          </div>
+
+          <div class="button signInButtons">
+            <button type="submit" mat-button>Sign In</button>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="button signInButtons">
+            <div class="buttonWithIcon" (click)="logInGoogle()"><mat-icon svgIcon="google"></mat-icon>Sign in with Google</div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

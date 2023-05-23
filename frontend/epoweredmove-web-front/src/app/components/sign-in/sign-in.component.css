@@ -1,0 +1,48 @@
+
+
+mat-card {
+  min-width: 300px;
+  width: 30%;
+}
+form {
+  width: 100%;
+}
+mat-form-field {
+  min-width: 100%;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 5px;
+  height: 12px;
+  font-size: 9px;
+  min-width: 80%;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signInButtons {
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+}
+.buttonWithIcon:hover{
+  color: #000000;
+  background-color: #efefef;
+  cursor: pointer;
+}

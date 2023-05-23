@@ -1,0 +1,83 @@
+<div class="page-title">Manage Points of Interest</div>
+<div class="add-button" *ngIf="isOwner()">
+  <button mat-mini-fab (click)="showAddPoiDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-menu-item (click)="showLocationDialog(element.latitude, element.longitude)">
+          <mat-icon>pin_drop</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parking">
+      <th mat-header-cell *matHeaderCellDef> Has Parking </th>
+      <td mat-cell *matCellDef="let element"> {{booleanVariablePipe.transform(element.parking)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="illumination">
+      <th mat-header-cell *matHeaderCellDef> Has Illumination </th>
+      <td mat-cell *matCellDef="let element"> {{booleanVariablePipe.transform(element.illumination)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wc">
+      <th mat-header-cell *matHeaderCellDef> Has WC </th>
+      <td mat-cell *matCellDef="let element"> {{booleanVariablePipe.transform(element.wc)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shopping">
+      <th mat-header-cell *matHeaderCellDef> Has Shop </th>
+      <td mat-cell *matCellDef="let element"> {{booleanVariablePipe.transform(element.shopping)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="food">
+      <th mat-header-cell *matHeaderCellDef> Serves Food </th>
+      <td mat-cell *matCellDef="let element"> {{booleanVariablePipe.transform(element.food)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone ? element.phone : '-'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef> Created At </th>
+      <td mat-cell *matCellDef="let element"> {{datePipe.transform(element.timestamp)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="chargingStation">
+      <th mat-header-cell *matHeaderCellDef> Manage Plugs </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-menu-item (click)="showChargingStationDialog(element.chargingStationObj)" *ngIf="element.chargingStationObj">
+          <mat-icon>ev_station</mat-icon>
+        </button>
+        <span *ngIf="!element.userObj">N/A</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="manipulate">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-menu-item (click)="showEditPoiDialog(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-menu-item (click)="deletePoi(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page">
+  </mat-paginator>
+</div>
