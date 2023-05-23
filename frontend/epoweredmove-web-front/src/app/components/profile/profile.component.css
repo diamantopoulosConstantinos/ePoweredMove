@@ -1,0 +1,22 @@
+.card-align-center {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+mat-card {
+  min-width: 300px;
+  width: 30%;
+}
+form {
+  width: 100%;
+}
+mat-form-field {
+  min-width: 100%;
+}
+mat-card-header,
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}

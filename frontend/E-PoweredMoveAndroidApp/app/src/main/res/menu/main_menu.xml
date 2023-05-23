@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/map"
+            android:title="@string/nav_map"
+            android:icon="@drawable/baseline_map_24"
+            android:visible="false"/>
+        <item
+            android:id="@+id/reservation"
+            android:title="@string/nav_reservation"
+            android:icon="@drawable/ticket_24"
+            android:visible="false"/>
+        <item
+            android:id="@+id/garage"
+            android:title="@string/nav_garage"
+            android:icon="@drawable/baseline_garage_24"
+            android:visible="false"/>
+    </group>
+    <item
+        android:id="@+id/account_menu"
+        android:title="@string/nav_account">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sign_in"
+                    android:title="@string/sign_in"
+                    android:icon="@drawable/baseline_login_24"
+                    android:visible="false"/>
+                <item
+                    android:id="@+id/sign_up"
+                    android:title="@string/sign_up"
+                    android:icon="@drawable/baseline_person_add_alt_1_24"
+                    android:visible="false"/>
+
+                <item
+                    android:id="@+id/profile"
+                    android:title="@string/nav_profile"
+                    android:icon="@drawable/baseline_person_24"
+                    android:visible="false"/>
+
+                <item
+                    android:id="@+id/sign_out"
+                    android:title="@string/sign_out"
+                    android:icon="@drawable/baseline_logout_24"
+                    android:visible="false"/>
+            </group>
+        </menu>
+    </item>
+</menu>

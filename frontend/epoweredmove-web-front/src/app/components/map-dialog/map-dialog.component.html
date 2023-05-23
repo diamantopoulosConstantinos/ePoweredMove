@@ -1,0 +1,3 @@
+<agm-map [latitude]="locationPipe.transform(latitude)" [longitude]="locationPipe.transform(longitude)" [zoom]="zoom" [disableDefaultUI]="false">
+  <agm-marker *ngIf="marker" [iconUrl]="marker.icon" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false"></agm-marker>
+</agm-map>

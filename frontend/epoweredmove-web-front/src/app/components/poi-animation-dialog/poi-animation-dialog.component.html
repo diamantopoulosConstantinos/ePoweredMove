@@ -1,0 +1,87 @@
+<mat-stepper orientation="vertical" [linear]="true" #stepper [animationDuration]="'1000'">
+  <mat-step [stepControl]="poiFormGroup">
+    <form [formGroup]="poiFormGroup">
+      <ng-template matStepLabel>Fill out Point of Interest information</ng-template>
+      <mat-form-field appearance="fill" class="formElementPadding" [floatLabel]="'auto'" [hideRequiredMarker]="true">
+        <mat-label>Search Location</mat-label>
+        <input #locationInput matInput>
+      </mat-form-field>
+      <agm-map [latitude]="locationPipe.transform(latitude)" [longitude]="locationPipe.transform(longitude)" [zoom]="zoom" [disableDefaultUI]="false" (mapClick)="mapClicked($event)"  class="formElementPadding">
+        <agm-marker *ngIf="marker" [iconUrl]="marker.icon" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false"></agm-marker>
+      </agm-map>
+
+      <div style="display: flex; flex-direction: column">
+        <mat-slide-toggle formControlName="parking" class="formElementPadding">Has Parking</mat-slide-toggle>
+        <mat-slide-toggle formControlName="illumination" class="formElementPadding">Has Illumination</mat-slide-toggle>
+        <mat-slide-toggle formControlName="wc" class="formElementPadding">Has WC</mat-slide-toggle>
+        <mat-slide-toggle formControlName="shopping" class="formElementPadding">Has Shop</mat-slide-toggle>
+        <mat-slide-toggle formControlName="food" class="formElementPadding">Serves Food</mat-slide-toggle>
+      </div>
+      <mat-form-field appearance="fill" class="formElementPadding" [floatLabel]="'auto'" [hideRequiredMarker]="true">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+
+      <div>
+        <button mat-mini-fab matStepperNext color="primary" class="formElementPadding"><mat-icon>skip_next</mat-icon></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="chargingStationFormGroup">
+    <form [formGroup]="chargingStationFormGroup">
+      <ng-template matStepLabel>Fill out Charging Station Information</ng-template>
+      <mat-form-field appearance="fill" class="formElementPadding" [floatLabel]="'auto'" [hideRequiredMarker]="true">
+        <mat-label>KWh Price (€)</mat-label>
+        <input matInput formControlName="pricePerKwh">
+      </mat-form-field>
+      <mat-icon matTooltip="Enter the price of KWh in €. A valid price pattern is 0.201" fontIcon="help"></mat-icon>
+      <div style="display: flex; flex-direction: column">
+        <div>
+          <button mat-mini-fab color="primary" class="formElementPadding" (click)="fileInput.click()"><mat-icon>add_photo_alternate</mat-icon></button>
+          <input hidden type="file" accept="image/*" (change)="readURL($event);" #fileInput/>
+          <img *ngIf="imageSrc" [src]="imageSrc">
+          <button mat-mini-fab *ngIf="imageSrc" color="primary" class="formElementPadding" (click)="removeImage()"><mat-icon>remove_circle_outline</mat-icon></button>
+        </div>
+        <div>
+          <mat-slide-toggle formControlName="autoAccept" class="formElementPadding">Auto Accept</mat-slide-toggle>
+          <mat-icon matTooltip="Automatically accepts a reservation if plug is available" fontIcon="help"></mat-icon>
+        </div>
+        <div>
+          <mat-slide-toggle formControlName="barcodeEnabled" class="formElementPadding">Barcode Verification</mat-slide-toggle>
+          <mat-icon matTooltip="Activate plugs by barcode" fontIcon="help"></mat-icon>
+        </div>
+        <div>
+          <mat-slide-toggle formControlName="apiEnabled" class="formElementPadding">API Verification</mat-slide-toggle>
+          <mat-icon matTooltip="Activate plugs by Application" fontIcon="help"></mat-icon>
+        </div>
+      </div>
+      <div>
+        <button mat-mini-fab matStepperPrevious color="warn" class="formElementPadding"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-mini-fab matStepperNext color="primary" class="formElementPadding"><mat-icon>skip_next</mat-icon></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="paymentMethodFormGroup">
+    <form [formGroup]="paymentMethodFormGroup">
+      <ng-template matStepLabel>Select Payment Methods</ng-template>
+      <div style="display: flex; flex-direction: column">
+        <mat-slide-toggle formControlName="app" class="formElementPadding">App</mat-slide-toggle>
+        <mat-slide-toggle formControlName="paypal" class="formElementPadding">Paypal</mat-slide-toggle>
+        <mat-slide-toggle formControlName="ebanking" class="formElementPadding">E-Banking</mat-slide-toggle>
+        <mat-slide-toggle formControlName="locally" class="formElementPadding">Locally</mat-slide-toggle>
+      </div>
+      <div>
+        <button mat-mini-fab matStepperPrevious color="warn" class="formElementPadding"><mat-icon>skip_previous</mat-icon></button>
+        <button mat-mini-fab matStepperNext color="primary" class="formElementPadding"><mat-icon>skip_next</mat-icon></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Save</ng-template>
+    <p>Save values?</p>
+    <div>
+      <button mat-mini-fab matStepperPrevious color="warn" class="formElementPadding"><mat-icon>skip_previous</mat-icon></button>
+      <button mat-fab color="success" class="formElementPadding" (click)="submit()"><mat-icon>save</mat-icon></button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -1,0 +1,45 @@
+<mat-toolbar style="height: 45px;" color="primary">
+  <mat-button-toggle [matMenuTriggerFor]="rootMenu" style="background-color: transparent; border: none;">
+    <mat-icon>menu</mat-icon>
+  </mat-button-toggle>
+  <span class="appTitle" [routerLink]="['']">E-Powered Move</span>
+
+  <span class="example-fill-remaining-space"></span>
+  <mat-button-toggle [routerLink]="['profile']" style="background-color: transparent; border: none;" *ngIf="isLoggedIn" matTooltip="{{loggedInName ? 'Logged In as ' + loggedInName : ''}}">
+    <mat-icon>person</mat-icon>
+  </mat-button-toggle>
+</mat-toolbar>
+<mat-menu #rootMenu="matMenu">
+  <button mat-menu-item [routerLink]="['signin']" *ngIf="!isLoggedIn">
+    <mat-icon>login</mat-icon>
+    <span>Sign In</span>
+  </button>
+  <button mat-menu-item [routerLink]="['signup']" *ngIf="!isLoggedIn">
+    <mat-icon>app_registration</mat-icon>
+    <span>Sign Up</span>
+  </button>
+  <button mat-menu-item [routerLink]="['map']" *ngIf="isLoggedIn">
+    <mat-icon>map</mat-icon>
+    <span>Map</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="managementMenu" *ngIf="isLoggedIn && hasManagementAccess()">
+    <mat-icon>display_settings</mat-icon>
+    <span>Management</span>
+  </button>
+  <button mat-menu-item [routerLink]="['signout']" *ngIf="isLoggedIn" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Sign Out</span>
+  </button>
+</mat-menu>
+
+<mat-menu #managementMenu="matMenu">
+  <button mat-menu-item [routerLink]="['pois']" *ngIf="hasManagementAccess">
+    <mat-icon>point_of_sale</mat-icon>
+    <span>Points of Interest</span></button>
+  <button mat-menu-item [routerLink]="['accounts']" *ngIf="hasRole('ADMIN')">
+    <mat-icon>manage_accounts</mat-icon>
+    <span>Users</span></button>
+  <button mat-menu-item [routerLink]="['reservations']" *ngIf="hasManagementAccess">
+    <mat-icon>book_online</mat-icon>
+    <span>Reservations</span></button>
+</mat-menu>

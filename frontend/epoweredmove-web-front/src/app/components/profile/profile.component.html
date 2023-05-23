@@ -1,0 +1,17 @@
+<div class="page-title">Profile</div>
+<div class="card-align-center">
+  <mat-card class="profile-card" *ngIf="user">
+    <mat-card-header>
+      <mat-card-title>{{ user.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content style="margin-top: 10px;">
+      <div class="profile-details">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Surname:</strong> {{ user.surname ? user.surname : '-' }}</p>
+        <p><strong>Phone:</strong> {{ user.phone ? user.phone : '-' }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

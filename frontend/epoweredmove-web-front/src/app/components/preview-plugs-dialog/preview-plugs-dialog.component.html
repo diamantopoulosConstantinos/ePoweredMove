@@ -1,0 +1,17 @@
+<mat-list style="text-align: center;">
+  <div mat-subheader><strong>Available Plugs</strong></div>
+  <mat-list-item *ngIf="!currentChargingStation.plugsObj || currentChargingStation.plugsObj.length === 0">No plugs found</mat-list-item>
+  <mat-list-item *ngFor="let plug of currentChargingStation.plugsObj">
+    <img class="plugTypeImage" matListItemAvatar src="{{plug.plugTypeObj && plug.plugTypeObj.imageUrl ? plug.plugTypeObj.imageUrl : '/assets/images/plug-default.jpeg'}}">
+    <mat-icon matListItemIcon (click)="showPlugDialog(plug)">preview</mat-icon>
+    <div matListItemTitle>
+      <div style="display: flex; flex-direction: column;">
+        <span>Phases: {{plug.phases}}, Power Output: {{plug.power}}, Available: {{availabilityPipe.transform(plug.availability)}}</span>
+      </div>
+
+    </div>
+    <div matListItemLine>
+      {{datePipe.transform(plug.timestamp)}}
+    </div>
+  </mat-list-item>
+</mat-list>

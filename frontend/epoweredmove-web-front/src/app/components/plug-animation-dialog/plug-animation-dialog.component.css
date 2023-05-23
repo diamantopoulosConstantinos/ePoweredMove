@@ -1,0 +1,19 @@
+.formElementPadding {
+  margin: 7px;
+}
+
+mat-card {
+  height: 100%;
+}
+
+mat-card-header,
+mat-card-content,
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.imageInsideSelect{
+  max-width: 50px;
+  max-height: 50px;
+}

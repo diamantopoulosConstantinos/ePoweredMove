@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?fragment_background">
+    <RelativeLayout
+        android:id="@+id/find_closest_charging_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="end">
+        <TextView
+            android:id="@+id/find_closest_charging_station_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="4dp"
+            android:textSize="17sp"
+            android:text="Find Closest Charging Station"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/find_closest_charging_station_text"
+            android:src="@drawable/baseline_assistant_direction_24"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/finding_closest_charging_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="end"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/finding_closest_charging_station_cancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="4dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_close_24"/>
+        <TextView
+            android:id="@+id/finding_closest_charging_station_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/finding_closest_charging_station_cancel"
+            android:textSize="17sp"
+            android:text="Finding current location..."/>
+        <include
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/finding_closest_charging_station_text"
+            layout="@layout/progress_bar_layout"
+            android:visibility="visible" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+</LinearLayout>

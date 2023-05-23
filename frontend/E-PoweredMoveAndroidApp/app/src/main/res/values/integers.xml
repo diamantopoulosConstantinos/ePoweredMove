@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="storage_permission_read_code">215546</integer>
+    <integer name="gps_permission_code">213131313</integer>
+    <integer name="storage_permission_write_code">55555445</integer>
+    <integer name="camera_permission_code">798798791</integer>
+    <integer name="name_max_length">50</integer>
+    <integer name="text_max_length">30</integer>
+    <integer name="password_min_length">6</integer>
+    <integer name="password_max_length">20</integer>
+    <integer name="google_auth_code">654654524</integer>
+</resources>

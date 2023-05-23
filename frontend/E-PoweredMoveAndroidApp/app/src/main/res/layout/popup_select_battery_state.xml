@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+    <LinearLayout
+        android:id="@+id/battery_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Remaining Battery %"/>
+        <EditText
+            android:id="@+id/current_battery_state"
+            android:layout_width="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_height="wrap_content"
+            android:hint="56"
+            android:inputType="number"
+            android:maxLength="3"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_battery_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/battery_layout"
+        android:textAllCaps="false"/>
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<div class="spinner_overlay" *ngIf="loader.getLoading()">
+  <app-loader></app-loader>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-navbar></app-navbar>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

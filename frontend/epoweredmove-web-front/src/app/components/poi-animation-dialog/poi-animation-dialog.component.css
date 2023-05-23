@@ -1,0 +1,38 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.formElementPadding {
+  margin: 7px;
+}
+
+.buttonWithIcon {
+  display: inline-flex;
+  align-items: center;
+}
+.buttonWithIcon:hover{
+  color: #000000;
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+agm-map {
+  height: 300px;
+}
+
+img{
+  max-height:200px;
+  max-width:300px;
+  height:auto;
+  width:auto;
+  padding: 10px;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
