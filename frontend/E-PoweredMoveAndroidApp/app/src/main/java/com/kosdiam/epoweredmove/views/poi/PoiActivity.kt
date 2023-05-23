@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MotionEvent
@@ -260,6 +261,8 @@ class PoiActivity : AppCompatActivity(), OnMapReadyCallback {
             }, mYear, mMonth, mDay)
             dpd.datePicker.minDate = cal.timeInMillis
             dpd.show()
+            dpd.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+            dpd.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
         }
 
         popupSelectTimeButton.setOnClickListener {
@@ -275,6 +278,8 @@ class PoiActivity : AppCompatActivity(), OnMapReadyCallback {
                 popupSelectedTimeText.visibility = View.VISIBLE
             }, mHour, mMinute, true)
             tpd.show()
+            tpd.getButton(TimePickerDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+            tpd.getButton(TimePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
         }
 
         popupSubmitBtn.setOnClickListener {

@@ -308,7 +308,9 @@ class ReservationFragment : Fragment() {
         })
     }
 
+    var currentTry = 0
     private fun fetchReservations() {
+        currentTry++
         parentActivity.setProgressBarVisibility(View.VISIBLE)
         val reservationService = ReservationService(mSharedPreferences.getString(PREF_FIREBASE_TOKEN, ""))
         val call = reservationService.reservationService.getReservationsByOwner(parentActivity.getFirebaseAuth().currentUser!!.uid)
@@ -319,12 +321,22 @@ class ReservationFragment : Fragment() {
                     setReservations()
                 }
                 else{
-                    parentActivity.showMessage(MessageType.ERROR_FETCHING_RESERVATIONS)
+                    if(currentTry <= 3){
+                        fetchReservations()
+                    }
+                    else{
+                        parentActivity.showMessage(MessageType.ERROR_FETCHING_RESERVATIONS)
+                    }
                 }
             }
 
             override fun onFailure(call: Call<List<Reservation>>, t: Throwable) {
-                parentActivity.showMessage(MessageType.ERROR_FETCHING_RESERVATIONS)
+                if(currentTry <= 3){
+                    fetchReservations()
+                }
+                else{
+                    parentActivity.showMessage(MessageType.ERROR_FETCHING_RESERVATIONS)
+                }
             }
 
         })
