@@ -134,10 +134,8 @@ public class VehicleService {
             return null;
         }
 
-        var avgConsumption = vehicleFound.getAvgConsumption();
-        var batteryRemainingKwh = (vehicleFound.getUsableBatterySize() * batteryPercentageRemaining) / 100;
-        //get the meters an electric vehicle will travel until it runs out of battery
-        var maxMetersTravel = ((batteryRemainingKwh*1000) / (avgConsumption)) * 100;
+        var remainingBatteryEnergy = vehicleFound.getUsableBatterySize() * batteryPercentageRemaining * Math.pow(10, -2);
+        var maxMetersTravel = (remainingBatteryEnergy / vehicleFound.getAvgConsumption()) * Math.pow(10, 3);
         var metersByVehicle = 0L;
         var metersByFoot = 0L;
         //if battery power is enough for closest path distance
