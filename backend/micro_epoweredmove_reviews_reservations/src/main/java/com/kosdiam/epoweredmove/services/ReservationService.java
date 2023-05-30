@@ -272,10 +272,8 @@ public class ReservationService {
             logger.log(Level.WARNING, "closest path distance is null");
             return null;
         }
-        var avgConsumption = reservation.getVehicleObj().getAvgConsumption();
-        var batteryRemainingKwh = (reservation.getVehicleObj().getUsableBatterySize() * batteryPercentageRemaining) / 100;
-        //get the meters an electric vehicle will travel until it runs out of battery
-        var maxMetersTravel = ((batteryRemainingKwh*1000) / (avgConsumption)) * 100;
+        var remainingBatteryEnergy = reservation.getVehicleObj().getUsableBatterySize() * batteryPercentageRemaining * Math.pow(10, -2);
+        var maxMetersTravel = (remainingBatteryEnergy / reservation.getVehicleObj().getAvgConsumption()) * Math.pow(10, 3);
         var metersByVehicle = 0L;
         var metersByFoot = 0L;
         //if battery power is enough for closest path distance
@@ -283,7 +281,7 @@ public class ReservationService {
             metersByVehicle = closestPathDistance;
         }
         else{
-            metersByVehicle = Long.parseLong(String.valueOf(maxMetersTravel));
+        	metersByVehicle = Math.round(maxMetersTravel);
             metersByFoot = closestPathDistance - metersByVehicle;
         }
         var reservationRouteInfoDto = new RouteInfoDto();
