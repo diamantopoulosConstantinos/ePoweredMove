@@ -53,11 +53,6 @@
 			<optional>true</optional>
 		</dependency>
 		
-		<!-- Sleuth - RabbitMQ -->
-		<dependency>
-		    <groupId>org.springframework.amqp</groupId>
-		    <artifactId>spring-rabbit</artifactId>
-		</dependency>
 		
 	</dependencies>
 	<dependencyManagement>
