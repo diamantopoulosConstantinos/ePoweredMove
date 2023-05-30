@@ -1,6 +1,7 @@
 package com.kosdiam.epoweredmove.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kosdiam.epoweredmove.models.dtos.PaymentMethodDto;
 import com.kosdiam.epoweredmove.services.PaymentMethodService;
 import com.kosdiam.epoweredmove.utils.exceptions.RecordNotFoundException;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 
 @RestController
 @RequestMapping("epoweredmove/paymentMethod")
@@ -25,9 +27,15 @@ public class PaymentMethodController {
     }
     
     @RequestMapping(path = "hello", method = RequestMethod.GET)
+    @RateLimiter(name = "hello", fallbackMethod = "helloFallback")
     public String hello() {
-        return "hello";
+    	Optional<String> podName = Optional.ofNullable(System.getenv("HOSTNAME"));
+		return "Hello, Welcome to K8s cluster = " + podName.get();
     }
+    
+    private String helloFallback(Throwable t) {
+		return "Hello (fallback)";
+	}
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<PaymentMethodDto> getPaymentMethod(@RequestParam String id) {

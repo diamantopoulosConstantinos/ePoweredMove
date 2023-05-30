@@ -1,6 +1,7 @@
 package com.kosdiam.epoweredmove.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +16,8 @@ import com.kosdiam.epoweredmove.models.dtos.PlugDto;
 import com.kosdiam.epoweredmove.services.PlugService;
 import com.kosdiam.epoweredmove.utils.exceptions.RecordNotFoundException;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+
 @RestController
 @RequestMapping("epoweredmove/plug")
 public class PlugController {
@@ -25,9 +28,15 @@ public class PlugController {
     }
     
     @RequestMapping(path = "hello", method = RequestMethod.GET)
+    @RateLimiter(name = "hello", fallbackMethod = "helloFallback")
     public String hello() {
-        return "hello";
+    	Optional<String> podName = Optional.ofNullable(System.getenv("HOSTNAME"));
+		return "Hello, Welcome to K8s cluster = " + podName.get();
     }
+    
+    private String helloFallback(Throwable t) {
+		return "Hello (fallback)";
+	}
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<PlugDto> getPlug(@RequestParam String id) {
