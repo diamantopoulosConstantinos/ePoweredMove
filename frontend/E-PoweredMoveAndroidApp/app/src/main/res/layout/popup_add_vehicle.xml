@@ -147,9 +147,9 @@
                 android:layout_weight="70"
                 android:layout_height="match_parent"
                 android:textColorHint="@color/gray"
-                android:maxLength="5"
+                android:maxLength="7"
                 android:inputType="numberDecimal"
-                android:hint="kWh"/>
+                android:hint="KWh"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,8 +172,8 @@
                 android:layout_height="match_parent"
                 android:textColorHint="@color/gray"
                 android:inputType="numberDecimal"
-                android:maxLength="5"
-                android:hint="kWh/100km"/>
+                android:maxLength="7"
+                android:hint="KWh/km"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -148,7 +148,7 @@ class ReservationFragment : Fragment() {
                         popupCurrentBatteryPercentage.error = parentActivity.getString(R.string.not_valid_battery)
                     }
                     else{
-                        startCurrentLocationSensor(selectedVehicleId, popupCurrentBatteryPercentage.text.toString().toInt())
+                        startCurrentLocationSensor(selectedVehicleId = selectedVehicleId, currentBatteryPercentage = popupCurrentBatteryPercentage.text.toString().toInt())
                         dialog.dismiss()
                     }
                 }
@@ -161,24 +161,24 @@ class ReservationFragment : Fragment() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun startCurrentLocationSensor(selectedVehicleId: String, currentBatteryPercentage: Int, reservation: Reservation? = null) {
+    private fun startCurrentLocationSensor(currentBatteryPercentage: Int, selectedVehicleId: String? = null, reservation: Reservation? = null) {
         findClosestChargingStationLayout.visibility = View.GONE
         findingClosestChargingStationLayout.visibility = View.VISIBLE
 
         locationListener = object : LocationListener {
             override fun onLocationChanged(currentLocation: Location) {
-                if(reservation == null){
+                if(selectedVehicleId != null){
                     searchForPoi(LatLng(currentLocation.latitude, currentLocation.longitude), selectedVehicleId, currentBatteryPercentage)
-                }else{
+                }else if(reservation != null){
                     showSelectedPoiInfo(LatLng(currentLocation.latitude, currentLocation.longitude), currentBatteryPercentage, reservation)
                 }
                 cancelFindingLocation()
             }
 
             override fun onLocationChanged(locations: MutableList<Location>) {
-                if(reservation == null){
+                if(selectedVehicleId != null){
                     searchForPoi(LatLng(locations[0].latitude, locations[0].longitude), selectedVehicleId, currentBatteryPercentage)
-                }else{
+                }else if(reservation != null){
                     showSelectedPoiInfo(LatLng(locations[0].latitude, locations[0].longitude), currentBatteryPercentage, reservation)
                 }
                 cancelFindingLocation()
@@ -376,13 +376,6 @@ class ReservationFragment : Fragment() {
     }
 
     private fun getRouteInfo(reservation: Reservation) {
-        if(mSharedPreferences.getString(PREF_SELECTED_VEHICLE, null).isNullOrEmpty()){
-            parentActivity.showMessage(MessageType.ERROR_NO_VEHICLE_SELECTED)
-            return
-        }
-
-        val selectedVehicleId = mSharedPreferences.getString(PREF_SELECTED_VEHICLE, null)!!
-
         val checkPermission = CheckPermission()
         if(checkPermission.hasGPSPermission(parentActivity)){
             val sensorStatus = SensorStatus()
@@ -401,7 +394,7 @@ class ReservationFragment : Fragment() {
                         popupCurrentBatteryPercentage.error = parentActivity.getString(R.string.not_valid_battery)
                     }
                     else{
-                        startCurrentLocationSensor(selectedVehicleId, popupCurrentBatteryPercentage.text.toString().toInt(), reservation)
+                        startCurrentLocationSensor(currentBatteryPercentage = popupCurrentBatteryPercentage.text.toString().toInt(), reservation = reservation)
                         dialog.dismiss()
                     }
                 }
