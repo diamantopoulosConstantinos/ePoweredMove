@@ -56,6 +56,25 @@
 		</dependency>
 		
 		
+		<!-- Micrometer and Zipkin Dependencies -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-micrometer</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-otel</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-exporter-zipkin</artifactId>
+		</dependency>
+		<!-- ************************ -->
+		
 		<!-- Circuit Breaker Dependencies -->
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
