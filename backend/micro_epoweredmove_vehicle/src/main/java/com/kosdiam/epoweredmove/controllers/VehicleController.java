@@ -40,7 +40,7 @@ public class VehicleController {
 	}
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<VehicleDto> getVehicle(@RequestParam String id ) {
+    public ResponseEntity<VehicleDto> getVehicle(@RequestParam String id) {
         var vehicle = vehicleService.getVehicle(id);
         if(vehicle == null) {
             throw new RecordNotFoundException("Vehicle not exist");
