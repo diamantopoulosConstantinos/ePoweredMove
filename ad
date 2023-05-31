@@ -1,0 +1,97 @@
+[33mcommit f130e4fa28d7b5a5bd52a30abec5a7f225a88c23[m[33m ([m[1;36mHEAD -> [m[1;32mtracingImplementationVer2[m[33m, [m[1;31morigin/tracingImplementationVer2[m[33m)[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 22:53:57 2023 +0300
+
+    well well
+
+[33mcommit 897391b68a9ae28827e001d9b69d4ff0b0fc5cd1[m[33m ([m[1;31morigin/tracingimplementation[m[33m, [m[1;32mtracingimplementation[m[33m)[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 21:20:01 2023 +0300
+
+    MicrometerCapability
+
+[33mcommit 23b07ef318a4a554b6923d279201a855e3756560[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 19:06:40 2023 +0300
+
+    New Domain Model
+
+[33mcommit d490370b284b995219027a012c7e0409299dad22[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 14:23:56 2023 +0300
+
+    Demo of Client-side Load Balancing with Spring
+    
+    Edited hello method in all microservices in order to demonstrate Load Balancing Features of Client-side Load Balancing with Spring.
+    Fallback method also implemented for local tests
+
+[33mcommit 65af67a673b046c8fdd229dcb6a6cd251fb326d7[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 12:17:59 2023 +0300
+
+    Changes to distance algorithm
+    
+    optimize remaining battery algorithm
+    change avg consumption from kwh/100km to kwh/km
+
+[33mcommit c49c5ec3f79f4402ce20f44d2806f45c9b6e4451[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 30 12:08:13 2023 +0300
+
+    fixes for reservation algorithm
+
+[33mcommit f7991e513bf74576e854e2c0a66d34fba545b729[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 23 18:42:53 2023 +0300
+
+    change calendar ok/cancel colors + add retry pattern in fetch reservatiοns
+
+[33mcommit e2693a98b034942ced1c587e773bc03f8bd192fd[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Tue May 23 18:19:24 2023 +0300
+
+    Init Projects
+
+[33mcommit 495636117b7e67b6dff837b07b55250ea5a0ee1c[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 18:10:09 2023 +0300
+
+    Init Projects
+
+[33mcommit 9c9d0fb3903ca0722dcb1b4a7bd7fd3e7b3c9d59[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 18:04:55 2023 +0300
+
+    Update .gitignore
+
+[33mcommit 7703c196d8374511ccb9d4f9f4a2e353113a0b51[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 18:02:26 2023 +0300
+
+    Add the  remaining microservices
+
+[33mcommit 00e241e6e7aa6705e37527bd7aa3f1f5fa7c8687[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 17:49:02 2023 +0300
+
+    GitIgnore
+
+[33mcommit a6d57b255b5262d978f83bd8a301f2cef824644d[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 17:33:19 2023 +0300
+
+    Init Project
+    
+    Backend Microservices Init
+
+[33mcommit 6225e76cd8a23369da1c2af889f016d0d28d1d18[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 17:26:02 2023 +0300
+
+    Init
+
+[33mcommit ed440096c362982d6198ca3f74dd90702d3ff2d2[m
+Author: diamantopoulosConstantinos <diamantopoulosconstantinos@gmail.com>
+Date:   Sun May 21 17:23:23 2023 +0300
+
+    Initial commit
