@@ -119,13 +119,13 @@ public class AuthFilter implements GlobalFilter {
             
             
         //Διαμαντόπουλος γιατί την μία φορά έβγαζε 401 και την άλλη 404.--//
-        if(verified == null || !verified){
-        	exchange.getResponse().getHeaders().add("Content-Type", "application/json");
-        	exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-        	byte[] bytes = "Prohibited : Unauthorized Call / User".getBytes(StandardCharsets.UTF_8);
-        	DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
-        	return exchange.getResponse().writeWith(Flux.just(buffer));
-        }
+//        if(verified == null || !verified){
+//        	exchange.getResponse().getHeaders().add("Content-Type", "application/json");
+//        	exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+//        	byte[] bytes = "Prohibited : Unauthorized Call / User".getBytes(StandardCharsets.UTF_8);
+//        	DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+//        	return exchange.getResponse().writeWith(Flux.just(buffer));
+//        }
         
         return chain.filter(exchange);
 	}
