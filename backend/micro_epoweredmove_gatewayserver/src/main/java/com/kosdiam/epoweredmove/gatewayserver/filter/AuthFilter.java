@@ -42,6 +42,7 @@ public class AuthFilter implements GlobalFilter {
 
     private Boolean verified;
     private String authorization;
+    private Boolean devMode;
 	
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -56,22 +57,31 @@ public class AuthFilter implements GlobalFilter {
         org.springframework.http.HttpHeaders headers = request.getHeaders();
         Set<String> headerNames = headers.keySet();
         
+        devMode = false;
+        
         headerNames.forEach((header) -> {
             logger.info(header + " " + headers.get(header));
             if(header.equals("Authorization") || header.equals("authorization")) {
             	authorization = headers.get(header).get(0);
             }
+            if (header.equals("Devmode")) {
+            	devMode = Boolean.parseBoolean(headers.get(header).get(0));
+            	logger.info("Devmode : inside if clause");
+            }
         });
         
-        //check for specific ips and hostnames ---------------------//
-        String remoteHost = exchange.getRequest().getHeaders().getFirst("Host");
-        logger.debug("Remote Host : " + remoteHost);
-        if(!remoteHost.contains("localhost") && !remoteHost.contains("34.122.196.113")) {
-        	exchange.getResponse().getHeaders().add("Content-Type", "application/json");
-        	exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-        	byte[] bytes = "Prohibited : Not Allowed Host".getBytes(StandardCharsets.UTF_8);
-        	DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
-        	return exchange.getResponse().writeWith(Flux.just(buffer));
+        if(!devMode) {
+        	logger.info("Devmode : false -- " + devMode);
+	        //check for specific ips and hostnames ---------------------//
+	        String remoteHost = exchange.getRequest().getHeaders().getFirst("Host");
+	        logger.debug("Remote Host : " + remoteHost);
+//	        if(!remoteHost.contains("34.30.106.243")) { //!remoteHost.contains("localhost") && 
+//	        	exchange.getResponse().getHeaders().add("Content-Type", "application/json");
+//	        	exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+//	        	byte[] bytes = "Prohibited : Not Allowed Host".getBytes(StandardCharsets.UTF_8);
+//	        	DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+//	        	return exchange.getResponse().writeWith(Flux.just(buffer));
+//	        }
         }
         
         //check for specific allowed calls ---------------------//

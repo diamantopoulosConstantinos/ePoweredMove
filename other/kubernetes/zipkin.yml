@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: zipkin-deployment
   labels:
-    app: epoweredmove
+    app: zipkin
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: zipkin
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: zipkin
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: zipkin
+        image: openzipkin/zipkin
         ports:
-        - containerPort: 8080
+        - containerPort: 9411
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: zipkin-service
 spec:
   selector:
-    app: epoweredmove
+    app: zipkin
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 9411
+      targetPort: 9411

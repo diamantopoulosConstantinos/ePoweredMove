@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: poichargingstation-deployment
   labels:
-    app: epoweredmove
+    app: poichargingstation
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: poichargingstation
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: poichargingstation
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: poichargingstation
+        image: diamantopoulosconstantinos/poichargingstation:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: poichargingstation-service
 spec:
   selector:
-    app: epoweredmove
-  type: LoadBalancer
+    app: poichargingstation
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8000
+      targetPort: 8000

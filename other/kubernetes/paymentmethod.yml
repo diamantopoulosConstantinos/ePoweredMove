@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: paymentmethod-deployment
   labels:
-    app: epoweredmove
+    app: paymentmethod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: paymentmethod
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: paymentmethod
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: paymentmethod
+        image: diamantopoulosconstantinos/paymentmethod:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8001
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: paymentmethod-service
 spec:
   selector:
-    app: epoweredmove
-  type: LoadBalancer
+    app: paymentmethod
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8001
+      targetPort: 8001
