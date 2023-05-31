@@ -2,8 +2,9 @@ package com.kosdiam.epoweredmove.models.dtos;
 
 import java.io.Serializable;
 
-import com.google.maps.model.VehicleType;
+
 import com.kosdiam.epoweredmove.models.enums.EvType;
+import com.kosdiam.epoweredmove.models.enums.VehicleType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
