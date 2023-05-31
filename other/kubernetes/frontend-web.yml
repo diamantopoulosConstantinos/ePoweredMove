@@ -19,6 +19,13 @@ spec:
         image: diamantopoulosconstantinos/epoweredmove-web-front:latest
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "100m"
+          limits:
+            cpu: "50m"
+            memory: "200m"
 ---
 apiVersion: v1
 kind: Service

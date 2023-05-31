@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: plugplugtype-deployment
   labels:
-    app: epoweredmove
+    app: plugplugtype
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: plugplugtype
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: plugplugtype
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: plugplugtype
+        image: diamantopoulosconstantinos/plugplugtype:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8003
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: plugplugtype-service
 spec:
   selector:
-    app: epoweredmove
-  type: LoadBalancer
+    app: plugplugtype
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8003
+      targetPort: 8003

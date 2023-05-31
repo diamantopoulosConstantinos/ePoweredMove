@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: gatewayserver-deployment
   labels:
-    app: epoweredmove
+    app: gatewayserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: gatewayserver
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: gatewayserver
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: gatewayserver
+        image: diamantopoulosconstantinos/gatewayserver:latest
         ports:
         - containerPort: 8080
         resources:
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: gatewayserver-service
 spec:
   selector:
-    app: epoweredmove
+    app: gatewayserver
   type: LoadBalancer
   ports:
     - protocol: TCP

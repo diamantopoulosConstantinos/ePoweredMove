@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: user-deployment
   labels:
-    app: epoweredmove
+    app: user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: user
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: user
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: user
+        image: diamantopoulosconstantinos/user:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 9000
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: user-service
 spec:
   selector:
-    app: epoweredmove
-  type: LoadBalancer
+    app: user
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 9000
+      targetPort: 9000

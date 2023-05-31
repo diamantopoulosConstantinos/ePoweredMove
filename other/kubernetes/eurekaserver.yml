@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: full-backend-deployment
+  name: eurekaserver-deployment
   labels:
-    app: epoweredmove
+    app: eurekaserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: epoweredmove
+      app: eurekaserver
   template:
     metadata:
       labels:
-        app: epoweredmove
+        app: eurekaserver
     spec:
       containers:
-      - name: epoweredmove
-        image: diamantopoulosconstantinos/epoweredmove:latest
+      - name: eurekaserver
+        image: diamantopoulosconstantinos/eurekaserver:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8070
         resources:
           requests:
             cpu: "50m"
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: epoweredmove-service
+  name: eurekaserver-service
 spec:
   selector:
-    app: epoweredmove
+    app: eurekaserver
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8070
+      targetPort: 8070

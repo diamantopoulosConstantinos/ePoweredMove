@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-jammy
 MAINTAINER Diamantopoulos Konstantinos
 
 # Add the application's jar to the container
-COPY target/micro_epoweredmove_chargingstation-0.0.1-SNAPSHOT.jar micro_epoweredmove_chargingstation-0.0.1-SNAPSHOT.jar
+COPY target/micro_epoweredmove_user-0.0.1-SNAPSHOT.jar micro_epoweredmove_user-0.0.1-SNAPSHOT.jar
 
 #execute the application
-ENTRYPOINT ["java","-jar","/micro_epoweredmove_chargingstation-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/micro_epoweredmove_user-0.0.1-SNAPSHOT.jar"]
