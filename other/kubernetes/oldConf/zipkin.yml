@@ -1,42 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: zipkin-deployment
   labels:
-    app: user
+    app: zipkin
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: zipkin
   template:
     metadata:
       labels:
-        app: user
+        app: zipkin
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: zipkin
+        image: openzipkin/zipkin
         ports:
-        - containerPort: 9000
+        - containerPort: 9411
         resources:
           requests:
             cpu: "150m"
             memory: "100M"
           limits:
-            cpu: "200m"
+            cpu: "250m"
             memory: "300M"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: zipkin-service
 spec:
   selector:
-    app: user
-  type: ClusterIP
+    app: zipkin
+  type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 9411
+      targetPort: 9411

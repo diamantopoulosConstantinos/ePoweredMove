@@ -12,30 +12,20 @@ spec:
   template:
     metadata:
       labels:
+        lbtype: external
         app: eurekaserver
     spec:
       containers:
       - name: eurekaserver
         image: diamantopoulosconstantinos/eurekaserver:latest
-        ports:
-        - containerPort: 8070
+        imagePullPolicy: Always
         resources:
           requests:
-            cpu: "50m"
-            memory: "100m"
+            cpu: "150m"
+            memory: "100M"
           limits:
-            cpu: "50m"
-            memory: "200m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: eurekaserver-service
-spec:
-  selector:
-    app: eurekaserver
-  type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 8070
-      targetPort: 8070
+            cpu: "200m"
+            memory: "200M"
+        ports:
+        - containerPort: 8070
+          name: "8070-port"

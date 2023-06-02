@@ -1,25 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: reviewsreservations-deployment
   labels:
-    app: user
+    app: reviewsreservations
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: reviewsreservations
   template:
     metadata:
       labels:
-        app: user
+        app: reviewsreservations
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: reviewsreservations
+        image: diamantopoulosconstantinos/reviewsreservations:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8004
         resources:
           requests:
             cpu: "150m"
@@ -31,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: reviewsreservations-service
 spec:
   selector:
-    app: user
+    app: reviewsreservations
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8004
+      targetPort: 8004

@@ -17,15 +17,16 @@ spec:
       containers:
       - name: reviewsreservations
         image: diamantopoulosconstantinos/reviewsreservations:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8004
         resources:
           requests:
-            cpu: "50m"
-            memory: "100m"
+            cpu: "150m"
+            memory: "100M"
           limits:
-            cpu: "50m"
-            memory: "200m"
+            cpu: "200m"
+            memory: "300M"
 ---
 apiVersion: v1
 kind: Service

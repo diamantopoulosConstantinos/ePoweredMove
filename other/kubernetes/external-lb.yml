@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - name: eurekaserver
+    port: 8070
+    targetPort: "8070-port"
+  - name: gatewayserver
+    port: 8080
+    targetPort: "8080-port"
+  - name: zipkin
+    port: 9411
+    targetPort: "9411-port"
+  - name: epoweredmove-web-front
+    port: 80
+    targetPort: "frontend-port"
+  selector:
+    lbtype: external

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: gatewayserver-deployment
   labels:
-    app: gatewayserver
+    app: gatewayserver        
 spec:
   replicas: 1
   selector:
@@ -12,30 +12,20 @@ spec:
   template:
     metadata:
       labels:
+        lbtype: external
         app: gatewayserver
     spec:
       containers:
       - name: gatewayserver
         image: diamantopoulosconstantinos/gatewayserver:latest
-        ports:
-        - containerPort: 8080
+        imagePullPolicy: Always
         resources:
           requests:
-            cpu: "50m"
-            memory: "100m"
+            cpu: "150m"
+            memory: "100M"
           limits:
-            cpu: "50m"
-            memory: "200m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: gatewayserver-service
-spec:
-  selector:
-    app: gatewayserver
-  type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+            cpu: "200m"
+            memory: "300M"
+        ports:
+        - containerPort: 8080
+          name: "8080-port"
