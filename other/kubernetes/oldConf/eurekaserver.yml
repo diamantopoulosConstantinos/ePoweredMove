@@ -1,42 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: eurekaserver-deployment
   labels:
-    app: user
+    app: eurekaserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: eurekaserver
   template:
     metadata:
       labels:
-        app: user
+        app: eurekaserver
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: eurekaserver
+        image: diamantopoulosconstantinos/eurekaserver:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8070
         resources:
           requests:
             cpu: "150m"
             memory: "100M"
           limits:
             cpu: "200m"
-            memory: "300M"
+            memory: "200M"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: eurekaserver-service
 spec:
   selector:
-    app: user
-  type: ClusterIP
+    app: eurekaserver
+  type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8070
+      targetPort: 8070

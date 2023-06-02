@@ -12,13 +12,13 @@ spec:
   template:
     metadata:
       labels:
-        lbtype: external
         app: epoweredmove-web-front
     spec:
       containers:
       - name: epoweredmove-web-front
         image: diamantopoulosconstantinos/epoweredmove-web-front:latest
-        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
         resources:
           requests:
             cpu: "150m"
@@ -26,6 +26,16 @@ spec:
           limits:
             cpu: "200m"
             memory: "200M"
-        ports:
-        - containerPort: 80
-          name: "frontend-port"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: epoweredmove-web-front-service
+spec:
+  selector:
+    app: epoweredmove-web-front
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80

@@ -1,25 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: vehicle-deployment
   labels:
-    app: user
+    app: vehicle
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: vehicle
   template:
     metadata:
       labels:
-        app: user
+        app: vehicle
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: vehicle
+        image: diamantopoulosconstantinos/vehicle:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8002
         resources:
           requests:
             cpu: "150m"
@@ -31,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: vehicle-service
 spec:
   selector:
-    app: user
+    app: vehicle
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8002
+      targetPort: 8002

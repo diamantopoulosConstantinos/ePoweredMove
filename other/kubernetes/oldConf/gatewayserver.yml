@@ -1,25 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: gatewayserver-deployment
   labels:
-    app: user
+    app: gatewayserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: gatewayserver
   template:
     metadata:
       labels:
-        app: user
+        app: gatewayserver
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: gatewayserver
+        image: diamantopoulosconstantinos/gatewayserver:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8080
         resources:
           requests:
             cpu: "150m"
@@ -31,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: gatewayserver-service
 spec:
   selector:
-    app: user
-  type: ClusterIP
+    app: gatewayserver
+  type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8080
+      targetPort: 8080

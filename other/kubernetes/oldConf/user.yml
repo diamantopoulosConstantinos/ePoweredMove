@@ -17,7 +17,6 @@ spec:
       containers:
       - name: user
         image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
         ports:
         - containerPort: 9000
         resources:

@@ -1,25 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: plugplugtype-deployment
   labels:
-    app: user
+    app: plugplugtype
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: plugplugtype
   template:
     metadata:
       labels:
-        app: user
+        app: plugplugtype
     spec:
       containers:
-      - name: user
-        image: diamantopoulosconstantinos/user:latest
-        imagePullPolicy: Always
+      - name: plugplugtype
+        image: diamantopoulosconstantinos/plugplugtype:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8003
         resources:
           requests:
             cpu: "150m"
@@ -31,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: plugplugtype-service
 spec:
   selector:
-    app: user
+    app: plugplugtype
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 9000
-      targetPort: 9000
+      port: 8003
+      targetPort: 8003

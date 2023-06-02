@@ -12,30 +12,20 @@ spec:
   template:
     metadata:
       labels:
+        lbtype: external
         app: zipkin
     spec:
       containers:
       - name: zipkin
         image: openzipkin/zipkin
-        ports:
-        - containerPort: 9411
+        imagePullPolicy: Always
         resources:
           requests:
-            cpu: "50m"
-            memory: "100m"
+            cpu: "150m"
+            memory: "100M"
           limits:
-            cpu: "50m"
-            memory: "200m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: zipkin-service
-spec:
-  selector:
-    app: zipkin
-  type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 9411
-      targetPort: 9411
+            cpu: "250m"
+            memory: "300M"
+        ports:
+        - containerPort: 9411
+          name: "9411-port"
