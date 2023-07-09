@@ -1,0 +1,31 @@
+# depl1LB.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-echo
+  template:
+    metadata:
+      labels:
+        app: service-echo
+    spec:
+      containers:
+        - name: service1
+          image: ghcr.io/moutansos/hellocontainers:latest
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: HELLOCONTAINERS_MESSAGE
+              value: 'Hello from Service 1!'
+      imagePullSecrets:
+        - name: ghcr-secret
+      nodeSelector:
+        kubernetes.io/os: linux
+---
