@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: eap-epoweredmove
+data:
+  #load-balance: "leastconn"
+  8081: "eap-epoweredmove/servicelb:8081"
+  

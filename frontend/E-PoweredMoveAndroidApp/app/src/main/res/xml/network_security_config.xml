@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">epoweredmove.ddns.net</domain> <!--prod domain microK8s-->
         <domain includeSubdomains="true">34.136.87.3</domain> <!--prod domain-->
         <domain includeSubdomains="true">10.0.2.2</domain> <!--android emulator-->
         <domain includeSubdomains="true">10.1.12.106</domain> <!--mobile through connected router-->
