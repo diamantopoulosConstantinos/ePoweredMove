@@ -1,8 +1,8 @@
-# depl1LB.yml
+# depl2LB.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service1
+  name: service2
 spec:
   #replicas: 2
   replicas: 1
@@ -12,20 +12,27 @@ spec:
   template:
     metadata:
       labels:
+        lbtype: external
         app: service-echo
     spec:
       containers:
-        - name: service1
+        - name: service2
           image: ghcr.io/moutansos/hellocontainers:latest
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "100M"
+            limits:
+              cpu: "200m"
+              memory: "200M"
           ports:
             - containerPort: 80
-              name: http
-              #name: testmetallb              
+              name: "8081-port"
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
             - name: HELLOCONTAINERS_MESSAGE
-              value: 'Hello from Service 1!'
+              value: 'Hello from Service 2!'
       imagePullSecrets:
         - name: ghcr-secret
       nodeSelector:

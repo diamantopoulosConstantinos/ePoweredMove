@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eurekaserver-deployment
+  labels:
+    app: eurekaserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eurekaserver
+  template:
+    metadata:
+      labels:
+        lbtype: external
+        app: eurekaserver
+    spec:
+      containers:
+      - name: eurekaserver
+        image: diamantopoulosconstantinos/eurekaserver:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "200M"
+          limits:
+            cpu: "500m"
+            memory: "400M"
+        ports:
+        - containerPort: 8070
+          name: "8070-port"
