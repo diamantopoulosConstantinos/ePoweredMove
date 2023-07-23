@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  labels:
+    app: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+      - name: user
+        image: diamantopoulosconstantinos/user:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "300M"
+          limits:
+            cpu: "400m"
+            memory: "500M"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  selector:
+    app: user
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poichargingstation-deployment
+  labels:
+    app: poichargingstation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poichargingstation
+  template:
+    metadata:
+      labels:
+        app: poichargingstation
+    spec:
+      containers:
+      - name: poichargingstation
+        image: diamantopoulosconstantinos/poichargingstation:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "300M"
+          limits:
+            cpu: "400m"
+            memory: "500M"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: poichargingstation-service
+spec:
+  selector:
+    app: poichargingstation
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

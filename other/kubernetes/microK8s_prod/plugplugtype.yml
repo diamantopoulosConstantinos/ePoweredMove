@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plugplugtype-deployment
+  labels:
+    app: plugplugtype
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plugplugtype
+  template:
+    metadata:
+      labels:
+        app: plugplugtype
+    spec:
+      containers:
+      - name: plugplugtype
+        image: diamantopoulosconstantinos/plugplugtype:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8003
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "300M"
+          limits:
+            cpu: "400m"
+            memory: "500M"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plugplugtype-service
+spec:
+  selector:
+    app: plugplugtype
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8003
+      targetPort: 8003

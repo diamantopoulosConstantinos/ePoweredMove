@@ -12,15 +12,22 @@ spec:
   template:
     metadata:
       labels:
+        lbtype: external
         app: service-echo
     spec:
       containers:
         - name: service1
           image: ghcr.io/moutansos/hellocontainers:latest
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "100M"
+            limits:
+              cpu: "200m"
+              memory: "200M"
           ports:
             - containerPort: 80
-              name: http
-              #name: testmetallb              
+              name: "8081-port"              
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development

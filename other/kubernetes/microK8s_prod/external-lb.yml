@@ -4,7 +4,7 @@ metadata:
   name: external-lb
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.1.220
+  loadBalancerIP: 192.168.1.219
   ports:
   - name: eurekaserver
     port: 8070
@@ -18,5 +18,8 @@ spec:
   - name: epoweredmove-web-front
     port: 8082
     targetPort: "frontend-port"
+  - name: service-echo
+    port: 8081
+    targetPort: "8081-port"
   selector:
     lbtype: external
