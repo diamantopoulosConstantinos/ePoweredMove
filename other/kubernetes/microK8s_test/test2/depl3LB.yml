@@ -18,8 +18,9 @@ spec:
         - name: service3
           image: ghcr.io/moutansos/hellocontainers:latest
           ports:
-            - name: http
-              containerPort: 80
+            - containerPort: 80
+              name: http
+              #name: testmetallb
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development

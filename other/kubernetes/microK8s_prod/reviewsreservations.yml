@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reviewsreservations-deployment
+  labels:
+    app: reviewsreservations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reviewsreservations
+  template:
+    metadata:
+      labels:
+        app: reviewsreservations
+    spec:
+      containers:
+      - name: reviewsreservations
+        image: diamantopoulosconstantinos/reviewsreservations:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8004
+        resources:
+          requests:
+            cpu: "300m"
+            memory: "300M"
+          limits:
+            cpu: "400m"
+            memory: "500M"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviewsreservations-service
+spec:
+  selector:
+    app: reviewsreservations
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8004
+      targetPort: 8004
